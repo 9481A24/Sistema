@@ -1,82 +1,82 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<title>Controle Financeiro com Histórico Organizado</title>
-<style>
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #f0f2f5;
-    padding: 20px;
-    color: #333;
-  }
-  .container {
-    max-width: 720px;
-    margin: auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-  }
-  h2, h3 {
-    text-align: center;
-  }
-  label {
-    display: block;
-    margin-top: 15px;
-    font-weight: bold;
-  }
-  input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-  }
-  button {
-    width: 100%;
-    margin-top: 25px;
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: none;
-    background-color: #28a745;
-    color: white;
-    cursor: pointer;
-    transition: background-color .3s;
-  }
-  button:hover {
-    background-color: #218838;
-  }
-  textarea {
-    width: 100%;
-    height: 180px;
-    margin-top: 10px;
-    padding: 10px;
-    font-family: monospace;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    resize: none;
-    white-space: pre-line;
-  }
-  .entrada-bloco {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-  .entrada-bloco > div {
-    flex: 1 1 48%;
-    min-width: 300px;
-  }
-  /* Estilo para o botão olho no investimento */
-  #toggle-investimento {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    margin-left: 8px;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <title>Controle Financeiro com Histórico Organizado</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 720px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h2, h3 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+      transition: background-color .3s;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    textarea {
+      width: 100%;
+      height: 180px;
+      margin-top: 10px;
+      padding: 10px;
+      font-family: monospace;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      resize: none;
+      white-space: pre-line;
+    }
+    .entrada-bloco {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .entrada-bloco > div {
+      flex: 1 1 48%;
+      min-width: 300px;
+    }
+    #toggle-investimento {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      margin-left: 8px;
+    }
+  </style>
 </head>
 <body>
 
@@ -132,9 +132,7 @@
     <textarea id="historico" readonly></textarea>
   </div>
 
-  <!-- Botão para imprimir relatório -->
   <button onclick="imprimirRelatorio()">🖨️ Imprimir Relatório</button>
-
 </div>
 
 <script>
@@ -290,19 +288,19 @@
           <h3>Histórico</h3>
           <div class="historico">${historico}</div>
         </div>
-        <script>
-          window.onload = function() {
-            window.print();
-            setTimeout(() => window.close(), 100);
-          }
-        <\/script>
       </body>
       </html>
     `;
 
     const novaJanela = window.open('', '', 'width=800,height=600');
+    novaJanela.document.open();
     novaJanela.document.write(htmlRelatorio);
     novaJanela.document.close();
+
+    novaJanela.onload = function () {
+      novaJanela.print();
+      setTimeout(() => novaJanela.close(), 100);
+    };
   }
 
   window.onload = carregarDadosSalvos;
