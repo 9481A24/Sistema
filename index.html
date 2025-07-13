@@ -308,8 +308,38 @@
       setTimeout(() => novaJanela.close(), 100);
     };
   }
+ window.onload = carregarDadosSalvos;
 
-  window.onload = carregarDadosSalvos;
+function lerCSV() {
+  const input = document.getElementById('arquivoCSV');
+  const file = input.files[0];
+  if (!file) return alert('Selecione um arquivo CSV.');
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const linhas = e.target.result.split('\n');
+    const entradas = [];
+
+    for (let i = 1; i < linhas.length; i++) {
+      const linha = linhas[i].trim();
+      if (!linha) continue;
+      const [data, descricao, valor] = linha.split(',');
+      if (!data || !descricao || isNaN(parseFloat(valor))) continue;
+
+      entradas.push({
+        data: data.trim(),
+        descricao: descricao.trim(),
+        valor: parseFloat(valor)
+      });
+    }
+
+    preencherEntradasImportadas(entradas);
+  };
+  reader.readAsText(file);
+}
+
+
+  
 </script>
 
 </body>
