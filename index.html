@@ -338,6 +338,23 @@ function lerCSV() {
   reader.readAsText(file);
 }
 
+function preencherEntradasImportadas(entradas) {
+  entradas.forEach((entrada, index) => {
+    // Preenche nas Entradas 1 e 2 (campo visível)
+    if (index === 0) {
+      document.getElementById('origem1').value = entrada.descricao;
+      document.getElementById('data1').value = entrada.data;
+      document.getElementById('valor1').value = entrada.valor;
+    } else if (index === 1) {
+      document.getElementById('origem2').value = entrada.descricao;
+      document.getElementById('data2').value = entrada.data;
+      document.getElementById('valor2').value = entrada.valor;
+    }
+    // Você pode expandir para mais entradas aqui se quiser
+  });
+
+  alert('Entradas preenchidas com sucesso! Agora clique em "Registrar Entradas" para somar.');
+}
 
   
 </script>
